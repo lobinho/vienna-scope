@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userSetting name="/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/promote.xml" version="Diamond (64-bit) 3.12.0.240.2" date="Sun Jan 24 20:56:16 2021" vendor="Lattice Semiconductor Corporation" >
+  <msg mid="35921504" type="Info" />
+  <msg mid="35931002" type="Warning" />
+  <msg mid="35921040" type="Error" />
+  <msg mid="35921400" type="Info" />
+  <msg mid="35921205" type="Warning" />
+  <msg mid="35921272" type="Error" />
+  <msg mid="35921664" type="Error" />
+  <msg mid="35921391" type="Error" />
+  <msg mid="35921077" type="Error" />
+  <msg mid="35921052" type="Error" />
+  <msg mid="35921303" type="Warning" />
+</userSetting>

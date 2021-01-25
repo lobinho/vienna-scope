@@ -1,0 +1,30 @@
+SCUBA, Version Diamond (64-bit) 3.12.0.240.2
+Sun Jan 24 20:53:26 2021
+  
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+  
+BEGIN SCUBA Module Synthesis
+  
+    Issued command   : /usr/local/diamond/3.12/ispfpga/bin/lin64/scuba -w -n efb -lang vhdl -synth lse -bus_exp 7 -bb -type efb -arch xo2c00 -freq 53.2 -i2c1config -i2c1_freq 100 -i2c1_sa 1000001 -i2c1_addr 7 -dev 4000 
+    Circuit name     : efb
+    Module type      : efb
+    Module Version   : 1.2
+    Ports            : 
+    Inputs       : wb_clk_i
+    Outputs      : i2c1_irqo
+    Inouts       : i2c1_scl, i2c1_sda
+    I/O buffer       : not inserted
+    EDIF output      : efb.edn
+    VHDL output      : efb.vhd
+    VHDL template    : efb_tmpl.vhd
+    VHDL purpose     : for synthesis and simulation
+    Bus notation     : big endian
+    Report output    : efb.srp
+    Estimated Resource Usage:
+  
+END   SCUBA Module Synthesis
+

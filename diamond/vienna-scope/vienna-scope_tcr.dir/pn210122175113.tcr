@@ -1,0 +1,54 @@
+#Start recording tcl command: 1/17/2021 21:08:27
+#Project Location: /home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope; Project name: vienna-scope
+prj_project open "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/vienna-scope.ldf"
+prj_src add "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/led.vhd"
+prj_src remove "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/impl1/source/led_blink.v"
+prj_run Synthesis -impl impl1 -task Lattice_Synthesis
+prj_run Synthesis -impl impl1 -task Lattice_Synthesis
+prj_src add "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/spi_slave.vhd"
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_src add "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/datatypes.vhd"
+prj_src exclude "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/datatypes.vhd"
+prj_src enable "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/datatypes.vhd"
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_src remove "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/top.v"
+prj_src add "/home/wolfgang/home/Documents/git_repos/vienna-scope-git/diamond/vienna-scope/top.vhd"
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Map -impl impl1
+prj_run Export -impl impl1
+prj_run Export -impl impl1
+prj_run Export -impl impl1
+deployment
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Synthesis -impl impl1
+prj_run Export -impl impl1
+deployment
+prj_run Export -impl impl1
+deployment
+#Stop recording: 1/22/2021 17:51:13

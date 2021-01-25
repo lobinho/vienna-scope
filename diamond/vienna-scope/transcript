@@ -1,0 +1,53 @@
+# do {/home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/led_blink_sim/led_blink_sim.mdo}
+# Loading project led_blink_sim
+# Model Technology ModelSim - Lattice FPGA Edition vcom 2020.3 Compiler 2020.10 Oct 14 2020
+# Start time: 21:06:45 on Jan 17,2021
+# vcom -work work /home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/dac.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package ATTRIBUTES
+# -- Loading package std_logic_misc
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_SIGNED
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dac
+# -- Compiling architecture behavioral of dac
+# End time: 21:06:46 on Jan 17,2021, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Lattice FPGA Edition vlog 2020.3 Compiler 2020.10 Oct 14 2020
+# Start time: 21:06:46 on Jan 17,2021
+# vlog "+incdir+/home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/impl1/source" -work work /home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/impl1/source/led_blink.v 
+# -- Compiling module led_blink
+# 
+# Top level modules:
+# 	led_blink
+# End time: 21:06:46 on Jan 17,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Lattice FPGA Edition vlog 2020.3 Compiler 2020.10 Oct 14 2020
+# Start time: 21:06:46 on Jan 17,2021
+# vlog "+incdir+/home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope" -work work /home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/top.v 
+# -- Compiling module top
+# 
+# Top level modules:
+# 	top
+# End time: 21:06:46 on Jan 17,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Lattice FPGA Edition vlog 2020.3 Compiler 2020.10 Oct 14 2020
+# Start time: 21:06:46 on Jan 17,2021
+# vlog "+incdir+/home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope" -work work /home/wolfgang/home/Documents/git_repos/Vienna-Scope/Bringup/diamond_project/vienna-scope/efb.v 
+# -- Compiling module efb
+# 
+# Top level modules:
+# 	efb
+# End time: 21:06:46 on Jan 17,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -L work -L pmi_work -L ovi_machxo2 top 
+# Start time: 21:06:46 on Jan 17,2021
+# 
+# ** License Issue: License server does not support this feature (latticemsim)
+# ** License Issue: No such feature exists. (/usr/local/diamond/3.12/bin/lin64/../../license/license.dat)
+# ** Error: Failure to obtain a Verilog simulation license. Unable to checkout any of these license features: 'latticemsim' or 'alteramtivlog'.
+# Error loading design
+# End time: 21:06:46 on Jan 17,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 6
