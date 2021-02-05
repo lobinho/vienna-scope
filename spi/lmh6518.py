@@ -1,8 +1,4 @@
-import os
-import time
-import subprocess
-import array
-import sys
+from gpio import GPIO
 
 
 # LMH6518 uses three wire SPI, aka half duplex
@@ -13,58 +9,21 @@ CS_GPIO = {
     'B': 7       # SPI_CS1
 }
 
-def writef(file, val):
-    with open(file, 'w') as f: f.write(val)
-
-def readf(file):
-    with open(file, 'r') as f: ret = f.read()
-    return ret
-
-class GPIO:
-    def __init__(self, num, dir='out'):
-        self.num = num
-        self.val = 0
-        writef('/sys/class/gpio/export', '%s' % num)
-        time.sleep(0.1)
-        writef('/sys/class/gpio/gpio%s/direction' % num, dir)
-
-    def close(self):
-        writef('/sys/class/gpio/gpio%s/direction' % self.num, 'in')
-        writef('/sys/class/gpio/unexport', '%s' % self.num)
-
-    def get(self):
-        return int(readf('/sys/class/gpio/gpio%s/value' % self.num))
-
-    def set(self, val=1):
-        if val == 0:
-            self.val = 0
-        else:
-            self.val = 1
-        writef('/sys/class/gpio/gpio%s/value' % self.num, '%s' % self.val)
-        return self.val
-
-    def clear(self):
-        self.set(0)
-
-    def pulse(self):
-        if (self.val):
-            self.set(0)
-            time.sleep(1)
-            self.set(1)
-        else:
-            self.set(1)
-            time.sleep(1)
-            self.set(0)
-
 
 class SPI:
     def __init__(self, sclk_gpio, sdio_gpio, cs_gpio):
-        self.sclk = GPIO(sclk_gpio)
-        self.mosi = GPIO(sdio_gpio)
-        self.cs = GPIO(cs_gpio)
+        try:
+            self.sclk = GPIO(sclk_gpio)
+            self.momi = GPIO(sdio_gpio)
+            self.cs = GPIO(cs_gpio)
+        except OSError as e:
+            print(f'{e}. Closing SPI channel.')
+            self.close()
+            return
+
         self.cs.set(1)
         self.sclk.set(0)
-        self.mosi.set(0)
+        self.momi.set(0)
 
     def __enter__(self):
         return self
@@ -74,7 +33,7 @@ class SPI:
 
     def close(self):
         self.sclk.close()
-        self.mosi.close()
+        self.momi.close()
         self.cs.close()
 
     def select(self):
@@ -84,7 +43,7 @@ class SPI:
         self.cs.set(1)
 
     def clock_out(self, value):
-        ret = self.mosi.set(value)
+        ret = self.momi.set(value)
         self.sclk.set(1)
         self.sclk.set(0)
         return ret
@@ -96,17 +55,17 @@ class SPI:
 
     def clock_in(self):
         self.sclk.set(1)
-        ret = self.mosi.get()
+        ret = self.momi.get()
         self.sclk.set(0)
         return ret
 
     def read(self, byte_count=1):
         ret = 0
-        writef('/sys/class/gpio/gpio%s/direction' % self.mosi.num, 'in')
+        self.momi.set_direction('in')
         for i in range(8 * byte_count):
             ret <<= 1
             ret |= self.clock_in()
-        writef('/sys/class/gpio/gpio%s/direction' % self.mosi.num, 'out')
+        self.momi.set_direction('out')
         return ret
 
 
