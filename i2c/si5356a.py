@@ -21,28 +21,20 @@ class Si5356A:
         """
         pass
 
-    def get_register_pairs_legacy(self, file):
-        """Use SiliconLabs Clock Builder Pro export to csv without
-        headers to get files in the format:
-            # Address,Data
-            6,08h
-        """
-        df = pd.read_table(file, sep=',', header=0, names=['Address', 'Data'])
-        df['Data'] = df['Data'].apply(lambda x: int(x[:-1], 16))
-        return df
-        
     def get_register_pairs(self, file):
         """Use SiliconLabs Clock Builder Pro export to C and extract data in the format:
             # Address,Data,Mask
             6,0x08,0x1D
         """
-        df = pd.read_table(file, sep=',', header=0, names=['Address', 'Data', 'Mask'])
-        df['Data'] = df['Data'].apply(lambda x: int(x, 16))
-        df['Mask'] = df['Mask'].apply(lambda x: int(x, 16))
+        df = pd.read_table(file, sep=',', header=0, comment='#', 
+                           names=['Address', 'Data', 'Mask'],
+                           converters = {'Address': lambda x: int(x),
+                                         'Data': lambda x: int(x, 16),
+                                         'Mask': lambda x: int(x, 16)})
         return df
         
 
-    def config(self):
+    def config(self, file):
         """3.5.2. Creating a New Configuration for RAM
             using ClockBuilder Desktop
             and procedure as Figure 5.
@@ -55,31 +47,68 @@ class Si5356A:
             5) Set OEB_ALL = 0; reg230[4]
             
         """
-        config_file = 'Si5356_10MHz_8x.csv'
-        print(f'Si5356A on i2c/{self.i2c_channel} config: {config_file}')
-
-        rd = []
+        print(f'Si5356A on i2c/{self.i2c_channel} config: {file}')
         with SMBus(self.i2c_channel) as bus:
-            # Read all 350 registers with chunks of 32 bytes ~ 11 times
-            for i in range(12):
-                rd256 = bus.read_i2c_block_data(self.i2c_address, 32 * i, 32)
-                rd.extend(rd256)
-                time.sleep(0.1)
-            bus.write_byte_data(self.i2c_address, 230, rd[230] | (1 << 4))
+            bus.write_byte_data(self.i2c_address, 255, 0)
+            rd_ = bus.read_byte_data(self.i2c_address, 230)
+            bus.write_byte_data(self.i2c_address, 230, rd_ | (1 << 4))
+            print(f'Writing OEB: {rd_ | (1 << 4)}')
             bus.write_byte_data(self.i2c_address, 241, 0x65)
-            for row in self.get_register_pairs(config_file).itertuples():
+            time.sleep(0.1)
+            for row in self.get_register_pairs(file).itertuples():
                 if row.Mask > 0:
-                    value = (rd[row.Address] & (~row.Mask)) | (row.Data & row.Mask)
+                    if row.Mask == 0xFF:
+                        value = row.Data
+                    else:
+                        rd = bus.read_byte_data(self.i2c_address, row.Address)
+                        value = (rd & (~row.Mask)) | (row.Data & row.Mask)
+                    print(f' > {row.Address:3} = {value:03X}')
                     bus.write_byte_data(self.i2c_address, row.Address, value)
-            bus.write_byte_data(self.i2c_address, 246, 0x2)
-            bus.write_byte_data(self.i2c_address, 230, rd[230] & (~ (1 << 4)))
+                if row.Address == 255:
+                    if row.Data == 0:
+                        print('Setting page 0')
+                    else:
+                        print('Setting page 1')
 
+            # Do not use read-modify-write procedure to perform soft reset:
+            bus.write_byte_data(self.i2c_address, 246, 0x2)
+            # spread spectrum (should not be necessary though..)
+            # rd_ = bus.read_byte_data(self.i2c_address, 226)
+            # bus.write_byte_data(self.i2c_address, 226, rd_ | (1 << 2))
+            # time.sleep(0.001)
+            # bus.write_byte_data(self.i2c_address, 226, rd_ & (~ (1 << 2)))
+            # spread spectrum end
+            rd_ = bus.read_byte_data(self.i2c_address, 230)
+            bus.write_byte_data(self.i2c_address, 230, rd_ & (~ (1 << 4)))
+            print(f'Writing OEB: {rd_ & (~ (1 << 4))}')
+
+    def get_status(self):
+        """Get status register 218 of page 0.
+        0 is good, 1 is lost.
+        XTAL shall be godd. CLKIN shall be lost.
+        """
+        with SMBus(self.i2c_channel) as bus:
+            rd = bus.read_byte_data(self.i2c_address, 218)
+        status = {
+            'Device calibration in progress': rd & 1,
+            'XTAL loss': (rd >> 2) & 1,
+            'CLKIN loss': (rd >> 3) & 1,
+            'PLL loss of lock': (rd >> 4) & 1
+        }
+        return status
 
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description='Si5356A clock generator.')
     parser.add_argument('--i2c_channel', type=int, default=1, help='defaults to 1')
+    parser.add_argument('--file', default='Si5356_1MHz_8x.csv',
+                        help='defaults to Si5356_1MHz_8x.csv')
     args = parser.parse_args()
     i2c_channel = args.i2c_channel
+    file = args.file
+    # file = 'Si5356_10MHz_8x.csv'
+    # file = 'Si5356_25MHz_2x.csv'
     with Si5356A(i2c_channel) as clk_gen:
-        clk_gen.config()
+        clk_gen.config(file)
+        time.sleep(0.5)
+        print('Status: {}'.format(clk_gen.get_status()))
