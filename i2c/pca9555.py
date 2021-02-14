@@ -134,11 +134,27 @@ if __name__ == '__main__':
         expander.configure('FPGA_PORT', 'FPGA_DONE', 'out')
         expander.write('FPGA_PORT', 'FPGA_DONE', 0)
 
-        # expander.configure('AFE_PORT', 'ADC_EXT_CLK_EN_N', 'out')
-        # expander.write('AFE_PORT', 'ADC_EXT_CLK_EN_N', 0)
+        # NOTE: Si5356A output clock enable is enabled on low and disabled on high
+        # In order to disable, set the pin as input which has a pull-up that should
+        # do the job. When instead setting this pin as output on high, the chip fails
+        # and becomes unresponsive until being reset (power cycle - maybe i2c stuck).
+        # print('Disabling ADC clock outputs (Si5356A).')
+        # expander.configure('AFE_PORT', 'ADC_EXT_CLK_EN_N', 'in')
+
+        print('Enabling ADC clock outputs (Si5356A).')
+        expander.write('AFE_PORT', 'ADC_EXT_CLK_EN_N', 0)
+        expander.configure('AFE_PORT', 'ADC_EXT_CLK_EN_N', 'out')
+        print('ADC_EXT_CLK_EN_N: {}'.format(expander.read('AFE_PORT', 'ADC_EXT_CLK_EN_N')))
 
         expander.configure('AFE_PORT', 'RPI_FPGA_LED', 'in')
         print('RPI_FPGA_LED: {}'.format(expander.read('AFE_PORT', 'RPI_FPGA_LED')))
 
         expander.configure('AFE_PORT', 'ADC_CLK_LOSS', 'in')
         print('ADC_CLK_LOSS: {}'.format(expander.read('AFE_PORT', 'ADC_CLK_LOSS')))
+
+        # # In future:
+        # # Reset pulse on fpga - when disabling jtag in favor for gpio use (pin 136)
+        # expander.write('FPGA_PORT', 'FPGA_TDI', 1)
+        # expander.configure('FPGA_PORT', 'FPGA_TDI', 'out')
+        # print('FPGA_PORT: {}'.format(expander.read('FPGA_PORT', 'FPGA_TDI')))
+
