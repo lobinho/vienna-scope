@@ -85,7 +85,8 @@ begin
             address_o         => s_address_o,
             write_data_o      => s_write_data_o,
             read_strobe_o     => s_read_strobe_o,
-            write_strobe_o    => s_write_strobe_o
+            write_strobe_o    => s_write_strobe_o,
+            state_o           => open
         );
 
 

@@ -19,7 +19,7 @@ architecture behavioral of spi_slave_tb is
     signal s_mosi_i           : std_logic := '0';
     signal s_miso_o           : std_logic_vector(0 downto 0);
     signal s_data_tx_valid_i  : std_logic := '0';
-    signal s_data_tx_i        : svl8_array_t(0 downto 0);
+    signal s_data_tx_i        : slv8_array_t(0 downto 0);
     signal s_data_rx_o        : std_logic_vector(7 downto 0);
     signal s_data_rx_valid_o  : std_logic;
     signal s_busy_o           : std_logic;
@@ -100,6 +100,7 @@ begin
             miso_o              => s_miso_o,
             data_tx_valid_i     => s_data_tx_valid_i,
             data_tx_i           => s_data_tx_i,
+            loopback_i          => '0',
             data_rx_o           => s_data_rx_o,
             data_rx_valid_o     => s_data_rx_valid_o,
             busy_o              => s_busy_o,

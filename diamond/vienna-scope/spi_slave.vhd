@@ -21,7 +21,8 @@ port (
     miso_o          : out std_logic_vector(G_MISO_WIDTH-1 downto 0);
     -------------
     data_tx_valid_i : in  std_logic;
-    data_tx_i       : in  svl8_array_t(0 to G_MISO_WIDTH-1);
+    data_tx_i       : in  slv8_array_t(0 to G_MISO_WIDTH-1);
+    loopback_i      : in  std_logic;
     data_rx_o       : out std_logic_vector(7 downto 0);
     data_rx_valid_o : out std_logic;
     busy_o          : out std_logic;
@@ -30,7 +31,8 @@ port (
 end spi_slave;
 
 architecture behavioral of spi_slave is
-    constant C_COM_TIMEOUT      : unsigned(15 downto 0) :=  X"03E7";
+    -- constant C_COM_TIMEOUT      : unsigned(15 downto 0) :=  X"03E7";
+    constant C_COM_TIMEOUT      : unsigned(15 downto 0) :=  X"FFFF";
     signal s_count_sck          : unsigned(2  downto 0);
     signal s_count_sck_z        : unsigned(2  downto 0);
     signal s_count_timeout      : unsigned(15 downto 0);
@@ -44,7 +46,8 @@ architecture behavioral of spi_slave is
     signal s_data_rx_valid      : std_logic;
     signal s_data_rx            : std_logic_vector(7 downto 0);
     signal s_shift_in           : std_logic_vector(7 downto 0);
-    signal s_shift_out          : svl8_array_t(0 to G_MISO_WIDTH-1);
+    signal s_shift_out          : slv8_array_t(0 to G_MISO_WIDTH-1);
+    signal s_shift_out_queue    : slv8_array_t(0 to G_MISO_WIDTH-1);
 begin
     p_register : process (clk_i, reset_i)
     begin
@@ -75,7 +78,7 @@ begin
             end if;
             s_count_sck_z <= s_count_sck;
             if s_count_sck /= "0" then
-                s_count_timeout <= s_count_timeout + 1;
+                -- temp. disable: s_count_timeout <= s_count_timeout + 1;
                 if s_count_timeout >= C_COM_TIMEOUT then
                     -- reset on timeout
                     s_count_sck <= (others => '0');
@@ -83,7 +86,6 @@ begin
             end if;
         end if;
     end process;
-    s_data_rx_valid <= '1' when (s_count_sck = "000" and s_count_sck_z = "111") else '0';
 
     p_shift_in : process (clk_i, reset_i)
     begin
@@ -91,8 +93,10 @@ begin
             s_data_rx  <= (others => '0');
             s_shift_in <= (others => '0');
         elsif rising_edge(clk_i) then
-            if s_data_rx_valid = '1' then
-                s_data_rx <= s_shift_in;
+            s_data_rx_valid <= '0';
+            if s_count_sck = "000" and s_count_sck_z = "111" then
+                s_data_rx_valid <= '1';
+                s_data_rx       <= s_shift_in;
             elsif (s_sck_redg = '1' and s_csn = '0') then
                 s_shift_in <= s_shift_in(6 downto 0) & s_mosi;
             end if;
@@ -105,19 +109,24 @@ begin
     begin
         if reset_i = '1' then
             for i in 0 to G_MISO_WIDTH-1 loop
-                s_shift_out(i) <= (others => '0');
+                s_shift_out(i)       <= (others => '0');
+                s_shift_out_queue(i) <= (others => '0');
             end loop;
-            s_miso             <= (others => 'Z');
+            s_miso                   <= (others => 'Z');
         elsif rising_edge(clk_i) then
-            if data_tx_valid_i = '1' and s_count_sck = "000" then
-                for i in 0 to G_MISO_WIDTH-1 loop
-                    s_shift_out(i) <= data_tx_i(i);
-                end loop;
-            elsif (s_sck_redg = '1' and s_csn = '0') then
-                for i in 0 to G_MISO_WIDTH-1 loop
+            for i in 0 to G_MISO_WIDTH-1 loop
+                if data_tx_valid_i = '1' then
+                    s_shift_out_queue(i) <= data_tx_i(i);
+                end if;
+                if (s_sck_redg = '1' and s_csn = '0') then
                     s_shift_out(i) <= s_shift_out(i)(6 downto 0) & '0';
-                    s_miso(i) <= std_logic(s_shift_out(i)(7));
-                end loop;
+                elsif s_count_sck = "000" then
+                    s_shift_out(i) <= s_shift_out_queue(i);
+                end if;
+                s_miso(i) <= s_shift_out(i)(7);
+            end loop;
+            if loopback_i = '1' then
+                s_miso(0) <= s_mosi;
             end if;
         end if;
     end process;
