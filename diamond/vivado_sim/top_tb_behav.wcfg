@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="osc_pkg" />
+            <top_module name="top_tb" />
+            <top_module name="vienna_scope_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="109737508670fs"></ZoomStartTime>
+      <ZoomEndTime time="125446504656fs"></ZoomEndTime>
+      <Cursor1Time time="229700000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="171"></NameColumnWidth>
+      <ValueColumnWidth column_width="132"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="52" />
+   <wvobject type="logic" fp_name="/top_tb/s_reset_i">
+      <obj_property name="ElementShortName">s_reset_i</obj_property>
+      <obj_property name="ObjectShortName">s_reset_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_clk_sys">
+      <obj_property name="ElementShortName">s_clk_sys</obj_property>
+      <obj_property name="ObjectShortName">s_clk_sys</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/spi_csn_i">
+      <obj_property name="ElementShortName">spi_csn_i</obj_property>
+      <obj_property name="ObjectShortName">spi_csn_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/spi_sck_i">
+      <obj_property name="ElementShortName">spi_sck_i</obj_property>
+      <obj_property name="ObjectShortName">spi_sck_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/spi_mosi_i">
+      <obj_property name="ElementShortName">spi_mosi_i</obj_property>
+      <obj_property name="ObjectShortName">spi_mosi_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/spi_miso_o">
+      <obj_property name="ElementShortName">spi_miso_o[0:0]</obj_property>
+      <obj_property name="ObjectShortName">spi_miso_o[0:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/led_o">
+      <obj_property name="ElementShortName">led_o</obj_property>
+      <obj_property name="ObjectShortName">led_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_spi_data_tx_valid">
+      <obj_property name="ElementShortName">s_spi_data_tx_valid</obj_property>
+      <obj_property name="ObjectShortName">s_spi_data_tx_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_spi_data_tx">
+      <obj_property name="ElementShortName">s_spi_data_tx[0:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_spi_data_tx[0:0][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_spi_data_rx">
+      <obj_property name="ElementShortName">s_spi_data_rx[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_spi_data_rx[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_spi_data_rx_valid">
+      <obj_property name="ElementShortName">s_spi_data_rx_valid</obj_property>
+      <obj_property name="ObjectShortName">s_spi_data_rx_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_spi_busy">
+      <obj_property name="ElementShortName">s_spi_busy</obj_property>
+      <obj_property name="ObjectShortName">s_spi_busy</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_spi_com_error">
+      <obj_property name="ElementShortName">s_spi_com_error</obj_property>
+      <obj_property name="ObjectShortName">s_spi_com_error</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_com_address">
+      <obj_property name="ElementShortName">s_com_address[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_com_address[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_com_write_data">
+      <obj_property name="ElementShortName">s_com_write_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_com_write_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_com_read_strobe_rq">
+      <obj_property name="ElementShortName">s_com_read_strobe_rq</obj_property>
+      <obj_property name="ObjectShortName">s_com_read_strobe_rq</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_com_read_strobe">
+      <obj_property name="ElementShortName">s_com_read_strobe</obj_property>
+      <obj_property name="ObjectShortName">s_com_read_strobe</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_com_write_strobe">
+      <obj_property name="ElementShortName">s_com_write_strobe</obj_property>
+      <obj_property name="ObjectShortName">s_com_write_strobe</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/i_spi/loopback_i">
+      <obj_property name="ElementShortName">loopback_i</obj_property>
+      <obj_property name="ObjectShortName">loopback_i</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/i_dut/i_com_decode/s_com_state">
+      <obj_property name="ElementShortName">s_com_state</obj_property>
+      <obj_property name="ObjectShortName">s_com_state</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_clk_counter">
+      <obj_property name="ElementShortName">s_clk_counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_clk_counter[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_led_clk_div">
+      <obj_property name="ElementShortName">s_led_clk_div[4:0]</obj_property>
+      <obj_property name="ObjectShortName">s_led_clk_div[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_led_enable">
+      <obj_property name="ElementShortName">s_led_enable</obj_property>
+      <obj_property name="ObjectShortName">s_led_enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_led_mode">
+      <obj_property name="ElementShortName">s_led_mode[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_led_mode[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_awg_count_clock">
+      <obj_property name="ElementShortName">s_awg_count_clock</obj_property>
+      <obj_property name="ObjectShortName">s_awg_count_clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_test_re">
+      <obj_property name="ElementShortName">s_test_re</obj_property>
+      <obj_property name="ObjectShortName">s_test_re</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_test">
+      <obj_property name="ElementShortName">s_test</obj_property>
+      <obj_property name="ObjectShortName">s_test</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_test_z">
+      <obj_property name="ElementShortName">s_test_z</obj_property>
+      <obj_property name="ObjectShortName">s_test_z</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/adc_ch1_clk0_i">
+      <obj_property name="ElementShortName">adc_ch1_clk0_i</obj_property>
+      <obj_property name="ObjectShortName">adc_ch1_clk0_i</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/adc_ch1_clk2_i">
+      <obj_property name="ElementShortName">adc_ch1_clk2_i</obj_property>
+      <obj_property name="ObjectShortName">adc_ch1_clk2_i</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/adc_ch1_d_i">
+      <obj_property name="ElementShortName">adc_ch1_d_i[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_ch1_d_i[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/adc_ch2_d_i">
+      <obj_property name="ElementShortName">adc_ch2_d_i[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">adc_ch2_d_i[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_adc_ch1_d">
+      <obj_property name="ElementShortName">s_adc_ch1_d[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_adc_ch1_d[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_adc_ch2_d">
+      <obj_property name="ElementShortName">s_adc_ch2_d[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_adc_ch2_d[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_dac_awg">
+      <obj_property name="ElementShortName">s_dac_awg[0:4][7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_dac_awg[0:4][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_awg_shape">
+      <obj_property name="ElementShortName">s_awg_shape[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s_awg_shape[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_awg_amplitude">
+      <obj_property name="ElementShortName">s_awg_amplitude[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_awg_amplitude[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_awg_offset">
+      <obj_property name="ElementShortName">s_awg_offset[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_awg_offset[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_awg_period">
+      <obj_property name="ElementShortName">s_awg_period[23:0]</obj_property>
+      <obj_property name="ObjectShortName">s_awg_period[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/s_awg_clk_stop">
+      <obj_property name="ElementShortName">s_awg_clk_stop</obj_property>
+      <obj_property name="ObjectShortName">s_awg_clk_stop</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/s_awg_clk_div">
+      <obj_property name="ElementShortName">s_awg_clk_div[3:0]</obj_property>
+      <obj_property name="ObjectShortName">s_awg_clk_div[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/dac_clkp_o">
+      <obj_property name="ElementShortName">dac_clkp_o</obj_property>
+      <obj_property name="ObjectShortName">dac_clkp_o</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_tb/i_dut/dac_clkn_o">
+      <obj_property name="ElementShortName">dac_clkn_o</obj_property>
+      <obj_property name="ObjectShortName">dac_clkn_o</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/dac_o">
+      <obj_property name="ElementShortName">dac_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dac_o[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/i_dut/G_ADC_INTERLEAVED_CH">
+      <obj_property name="ElementShortName">G_ADC_INTERLEAVED_CH</obj_property>
+      <obj_property name="ObjectShortName">G_ADC_INTERLEAVED_CH</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/top_tb/i_dut/G_MISO_WIDTH">
+      <obj_property name="ElementShortName">G_MISO_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">G_MISO_WIDTH</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/C_DC">
+      <obj_property name="ElementShortName">C_DC[2:0]</obj_property>
+      <obj_property name="ObjectShortName">C_DC[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/C_SAWTOOTH">
+      <obj_property name="ElementShortName">C_SAWTOOTH[2:0]</obj_property>
+      <obj_property name="ObjectShortName">C_SAWTOOTH[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/C_TRIANGLE">
+      <obj_property name="ElementShortName">C_TRIANGLE[2:0]</obj_property>
+      <obj_property name="ObjectShortName">C_TRIANGLE[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/C_SQUARE">
+      <obj_property name="ElementShortName">C_SQUARE[2:0]</obj_property>
+      <obj_property name="ObjectShortName">C_SQUARE[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/C_SINE">
+      <obj_property name="ElementShortName">C_SINE[2:0]</obj_property>
+      <obj_property name="ObjectShortName">C_SINE[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_tb/i_dut/i_spi/s_shift_out">
+      <obj_property name="ElementShortName">s_shift_out[0:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_shift_out[0:0][7:0]</obj_property>
+   </wvobject>
+</wave_config>
