@@ -1,15 +1,17 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_misc.all;
+use ieee.numeric_std.all;
 
 package vienna_scope_pkg is
 
      constant C_SPI_CMD_RD       : std_logic_vector(7 downto 0) := X"01";
      constant C_SPI_CMD_WR       : std_logic_vector(7 downto 0) := X"02";
 
-     type com_state_t        is (WAIT_FOR_CMD, WAIT_FOR_ADDR_RD, WAIT_FOR_ADDR_WR, WAIT_FOR_DATA_WR);
-     type svl8_array_t       is array (natural range <>) of std_logic_vector(7 downto 0);
-     type svl8_array_t        is array (natural range <>) of std_logic_vector(7 downto 0);
+     type com_state_t        is (WAIT_FOR_CMD, WAIT_FOR_ADDR_RD, WAIT_FOR_ADDR_WR, WAIT_FOR_DATA_RD, WAIT_FOR_DATA_WR);
+     type fifo_rd_state_t    is (DIRECT_READ_RQ, WAIT_FOR_FIFO_0, WAIT_FOR_FIFO_1);
+     type slv8_array_t       is array (natural range <>) of std_logic_vector(7 downto 0);
+     type unsigned8_array_t  is array (natural range <>) of unsigned(7 downto 0);
 
      type sine_array_t       is array (0 to 255) of integer range -128 to 127;
      constant C_SINE_ARRAY : sine_array_t := 

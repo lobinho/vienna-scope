@@ -1,0 +1,6 @@
+diamond/vienna-scope/impl1/*
+!diamond/vienna-scope/impl1/*.bit
+diamond/vivado_sim/*
+!diamond/vivado_sim/*.xpr
+!diamond/vivado_sim/*.wcfg
+!diamond/vivado_sim/*.tcl

@@ -5,12 +5,6 @@
     </Options>
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="lse" default_strategy="Strategy1">
         <Options def_top="top" top="top"/>
-        <Source name="dac.vhd" type="VHDL" type_short="VHDL">
-            <Options/>
-        </Source>
-        <Source name="led.vhd" type="VHDL" type_short="VHDL">
-            <Options/>
-        </Source>
         <Source name="spi_slave.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
@@ -20,9 +14,6 @@
         <Source name="spi_decode.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
-        <Source name="dac_clk.vhd" type="VHDL" type_short="VHDL">
-            <Options/>
-        </Source>
         <Source name="awg.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
@@ -30,6 +21,12 @@
             <Options/>
         </Source>
         <Source name="osc_pkg.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="clk_count.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="adc_fifo.ipx" type="IPX_Module" type_short="IPX">
             <Options/>
         </Source>
         <Source name="vienna-scope.lpf" type="Logic Preference" type_short="LPF">
